@@ -15,6 +15,7 @@ class Event(models.Model):
     datetime = models.DateTimeField()
     created_at = models.DateTimeField(null=True,blank=True,auto_now_add=True,)
     image = models.URLField(null=True,blank=True,)
+    info = models.TextField(null=True,blank=True,)
 class AttendEvent(models.Model):
     'Generated Model'
     user = models.ForeignKey("users.User",on_delete=models.CASCADE,related_name="attendevent_user",)
