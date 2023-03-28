@@ -7,30 +7,33 @@ import { Text, View, StyleSheet, Image, FlatList, Pressable, TextInput } from "r
 const EventHome = () => {
   const dispatch = useDispatch();
   const [upcomingEvents, setUpcomingEvents] = useState([]);
-  const [events, setEvents] = useState([]);
   const [search, setSearch] = useState("");
   const [selectedTab, setSelectedTab] = useState(0);
   const [user, setUser] = useState({});
   useEffect(() => {
-    setEvents([{
-      id: 1,
-      title: "Inster Representative Name",
-      location: "New York, USA",
-      time: "11:00 AM",
-      date: "28 Sept 2022",
-      image: require("./assets/eventImage-sm.png")
-    }]);
+    // setEvents([{
+    //   id: 1,
+    //   title: "Inster Representative Name",
+    //   location: "New York, USA",
+    //   time: "11:00 AM",
+    //   date: "28 Sept 2022",
+    //   image: require("./assets/eventImage-sm.png")
+    // }]);
     setUser({
       name: "User Name"
     });
     dispatch(api_v1_event_list());
+    console.log('Events', Events);
   }, []);
+  const {
+    entities: Events
+  } = useSelector(state => state.Events);
   return <View style={styles.container}>
       <FlatList style={styles.list} ListHeaderComponent={() => <View>
             <Text style={styles.greetingText}>Good Morning,</Text>
             <Text style={styles.username}>{user.name}</Text>
             <Input text="Search" value={search} onChange={text => setSearch(text)} containerStyle={styles.inputContainer} />    
-            </View>} data={events} renderItem={({
+            </View>} renderItem={({
       item
     }) => <Event event={item} />} keyExtractor={item => item.id} showsVerticalScrollIndicator={false} />
       <Footer images={[require("./assets/homeIconActive.png"), require("./assets/starIcon.png"), require("./assets/taskIcon.png"), require("./assets/mapIcon.png")]} titles={["Home", "Sponsors", "Tasks", "Map"]} active={0} activeColor="#7C7C7C" />
@@ -77,6 +80,27 @@ const styles = StyleSheet.create({
   tabView: {
     alignSelf: "center",
     marginVertical: 10
+  },
+  JGtfACEu: {
+    width: 100,
+    height: 50,
+    lineHeight: 14,
+    fontSize: 14,
+    borderRadius: 0
+  },
+  iZqXqCtl: {
+    width: 100,
+    height: 50,
+    lineHeight: 14,
+    fontSize: 14,
+    borderRadius: 0
+  },
+  NEbVThkb: {
+    width: 100,
+    height: 50,
+    lineHeight: 14,
+    fontSize: 14,
+    borderRadius: 0
   }
 });
 export default EventHome;
@@ -257,7 +281,7 @@ const Event = ({
     }}>
         <Text style={eventStyles.btnText}>Join</Text>
       </Pressable>
-    </View>;
+    <Text style={styles.iZqXqCtl}>Lorem ipsum…</Text></View>;
 };
 
 const eventStyles = StyleSheet.create({
