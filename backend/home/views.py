@@ -1,4 +1,4 @@
-from .models import Recipe, Event
+from .models import Recipe, Event, AttendEvent
 from django.views.generic import CreateView, UpdateView, DetailView, ListView
 from django.shortcuts import render
 
