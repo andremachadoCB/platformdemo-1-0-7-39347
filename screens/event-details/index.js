@@ -28,10 +28,7 @@ const EventDetails = () => {
                 </Text>
               </View>
             </View>
-            <Pressable style={styles.roundButton}>
-              <Image source={require("./assets/giftIcon.png")} style={styles.giftIcon} />
-              <Text style={styles.btnText}>Donate</Text>
-            </Pressable>
+            
           </View>
           <View style={styles.dateTimeContainer}>
             <View style={styles.dateTimeItem}>
