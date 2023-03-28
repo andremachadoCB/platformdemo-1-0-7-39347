@@ -26,7 +26,7 @@ const getNavigation = (modules, screens, initialRoute) => {
       return <Stack.Screen key={name} name={name} component={Component} />;
     });
     const screenOptions = {
-      headerShown: true
+      headerShown: false
     };
     return <NavigationContainer>
         <Stack.Navigator initialRouteName={initialRoute} screenOptions={screenOptions}>
