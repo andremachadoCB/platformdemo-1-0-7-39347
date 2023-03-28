@@ -3,7 +3,7 @@ import { api_v1_event_list } from "./../../store/platformdemoAPI/events.slice.js
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Image, FlatList, Pressable, TextInput } from "react-native";
+import { Text, View, StyleSheet, Image, FlatList, Pressable } from "react-native";
 
 const EventHome = () => {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const EventHome = () => {
       <FlatList style={styles.list} ListHeaderComponent={() => <View>
             <Text style={styles.greetingText}>Good Morning,</Text>
             <Text style={styles.username}>{user.name}</Text>
-            <Input text="Search" value={search} onChange={text => setSearch(text)} containerStyle={styles.inputContainer} />    
+            
             </View>} data={Events} renderItem={({
       item
     }) => <Event event={item} />} keyExtractor={item => item.id} showsVerticalScrollIndicator={false} />
@@ -158,14 +158,7 @@ const footerStyles = StyleSheet.create({
 });
 
 const Input = props => {
-  return <View style={[inputStyles.inputContainer, props.containerStyle]}>
-      {props.text ? <Text style={inputStyles.inputText}>{props.text}</Text> : null}
-
-      <TextInput style={[inputStyles.input, props.style, props.textArea ? inputStyles.textArea : null]} placeholder={props.placeholder ? props.placeholder : "Enter"} value={props.value} onChangeText={text => props.onChange(text)} placeholderTextColor={props.placeholderTextColor ? props.placeholderTextColor : "#9B9B9B"} editable={props.editable !== false} autoCapitalize="none" autoCorrect={false} multiline={!!props.textArea} />
-      {props.errorText ? <Text style={inputStyles.error}>{props.errorText}</Text> : null}
-      {props.icon ? <Image source={props.icon} style={props.text ? inputStyles.iconWithText : inputStyles.iconWithoutText} /> : null}
-      <View style={styles.children}>{props.children}</View>
-    </View>;
+  return;
 };
 
 const inputStyles = StyleSheet.create({
