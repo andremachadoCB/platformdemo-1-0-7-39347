@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, ScrollView, Image, Pressable } from "react-native";
 
-const EventDetails = () => {
+const EventDetails = ({
+  route
+}) => {
+  const {
+    item
+  } = route.params || {};
   const [event, setEvent] = useState({});
   useEffect(() => {
     setEvent({
