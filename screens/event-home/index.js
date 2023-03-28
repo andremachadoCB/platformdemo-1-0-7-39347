@@ -3,37 +3,33 @@ import { api_v1_event_list } from "./../../store/platformdemoAPI/events.slice.js
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Image, FlatList, Pressable } from "react-native";
+import { Text, View, StyleSheet, Image, FlatList, Pressable, TextInput } from "react-native";
 
 const EventHome = () => {
   const dispatch = useDispatch();
-  const [upcomingEvents, setUpcomingEvents] = useState([]);
   const [search, setSearch] = useState("");
-  const [selectedTab, setSelectedTab] = useState(0);
   const [user, setUser] = useState({});
   useEffect(() => {
-    // setEvents([{
-    //   id: 1,
-    //   title: "Inster Representative Name",
-    //   location: "New York, USA",
-    //   time: "11:00 AM",
-    //   date: "28 Sept 2022",
-    //   image: require("./assets/eventImage-sm.png")
-    // }]);
     setUser({
       name: "User Name"
     });
     dispatch(api_v1_event_list());
-    dispatch(getweather_get_data_25_weather_read());
+    dispatch(getweather_get_data_25_weather_read({
+      q: "Lahore",
+      appid: "36676c6f6399fba853b001e80510e3b3"
+    }));
   }, []);
+  const {
+    entities: weather
+  } = useSelector(state => state?.Getweather_response_get_GetWeatherbyCities);
   const {
     entities: Events
   } = useSelector(state => state.Events);
   return <View style={styles.container}>
       <FlatList style={styles.list} ListHeaderComponent={() => <View>
-            <Text style={styles.greetingText}>Good Morning,</Text>
-            <Text style={styles.username}>{user.name}</Text>
-            
+            <Text style={styles.greetingText}>Good Morning, </Text>
+            <Text style={styles.username}>{weather[0]?.name} (temp {weather[0]?.main?.temp_min}F - {weather[0]?.main?.temp_max}F)</Text>
+            <Input text="Search" value={search} onChange={text => setSearch(text)} containerStyle={styles.inputContainer} />    
             </View>} data={Events} renderItem={({
       item
     }) => <Event event={item} />} keyExtractor={item => item.id} showsVerticalScrollIndicator={false} />
@@ -158,7 +154,14 @@ const footerStyles = StyleSheet.create({
 });
 
 const Input = props => {
-  return;
+  return <View style={[inputStyles.inputContainer, props.containerStyle]}>
+      {props.text ? <Text style={inputStyles.inputText}>{props.text}</Text> : null}
+
+      <TextInput style={[inputStyles.input, props.style, props.textArea ? inputStyles.textArea : null]} placeholder={props.placeholder ? props.placeholder : "Enter"} value={props.value} onChangeText={text => props.onChange(text)} placeholderTextColor={props.placeholderTextColor ? props.placeholderTextColor : "#9B9B9B"} editable={props.editable !== false} autoCapitalize="none" autoCorrect={false} multiline={!!props.textArea} />
+      {props.errorText ? <Text style={inputStyles.error}>{props.errorText}</Text> : null}
+      {props.icon ? <Image source={props.icon} style={props.text ? inputStyles.iconWithText : inputStyles.iconWithoutText} /> : null}
+      <View style={styles.children}>{props.children}</View>
+    </View>;
 };
 
 const inputStyles = StyleSheet.create({
