@@ -12,48 +12,8 @@ const EventHome = () => {
   const [selectedTab, setSelectedTab] = useState(0);
   const [user, setUser] = useState({});
   useEffect(() => {
-    setUpcomingEvents([{
-      id: 1,
-      title: "Event Name 2022",
-      location: "New York, USA",
-      joined: 48,
-      image: require("./assets/eventImage-lg.png")
-    }, {
-      id: 2,
-      title: "Event Name 2022",
-      location: "New York, USA",
-      joined: 48,
-      image: require("./assets/eventImage-lg.png")
-    }, {
-      id: 3,
-      title: "Event Name 2022",
-      location: "New York, USA",
-      joined: 48,
-      image: require("./assets/eventImage-lg.png")
-    }]);
     setEvents([{
       id: 1,
-      title: "Inster Representative Name",
-      location: "New York, USA",
-      time: "11:00 AM",
-      date: "28 Sept 2022",
-      image: require("./assets/eventImage-sm.png")
-    }, {
-      id: 2,
-      title: "Inster Representative Name",
-      location: "New York, USA",
-      time: "11:00 AM",
-      date: "28 Sept 2022",
-      image: require("./assets/eventImage-sm.png")
-    }, {
-      id: 3,
-      title: "Inster Representative Name",
-      location: "New York, USA",
-      time: "11:00 AM",
-      date: "28 Sept 2022",
-      image: require("./assets/eventImage-sm.png")
-    }, {
-      id: 4,
       title: "Inster Representative Name",
       location: "New York, USA",
       time: "11:00 AM",
@@ -69,11 +29,8 @@ const EventHome = () => {
       <FlatList style={styles.list} ListHeaderComponent={() => <View>
             <Text style={styles.greetingText}>Good Morning,</Text>
             <Text style={styles.username}>{user.name}</Text>
-            <Input text="Search" value={search} onChange={text => setSearch(text)} containerStyle={styles.inputContainer} />
-            
-            
-            <TabView tabTitles={["Event", "Event", "Event", "Event"]} selected={selectedTab} onPress={index => setSelectedTab(index)} style={styles.tabView} />
-          </View>} data={events} renderItem={({
+            <Input text="Search" value={search} onChange={text => setSearch(text)} containerStyle={styles.inputContainer} />    
+            </View>} data={events} renderItem={({
       item
     }) => <Event event={item} />} keyExtractor={item => item.id} showsVerticalScrollIndicator={false} />
       <Footer images={[require("./assets/homeIconActive.png"), require("./assets/starIcon.png"), require("./assets/taskIcon.png"), require("./assets/mapIcon.png")]} titles={["Home", "Sponsors", "Tasks", "Map"]} active={0} activeColor="#7C7C7C" />
