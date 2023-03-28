@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from home.models import Event,Recipe
-from .serializers import EventSerializer,RecipeSerializer
+from home.models import AttendEvent,Event,Recipe
+from .serializers import AttendEventSerializer,EventSerializer,RecipeSerializer
 from rest_framework import authentication
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.viewsets import ModelViewSet, ViewSet
@@ -42,3 +42,8 @@ class EventViewSet(viewsets.ModelViewSet):
     serializer_class = EventSerializer
     authentication_classes = (authentication.SessionAuthentication, authentication.TokenAuthentication)
     queryset = Event.objects.all()
+
+class AttendEventViewSet(viewsets.ModelViewSet):
+    serializer_class = AttendEventSerializer
+    authentication_classes = (authentication.SessionAuthentication, authentication.TokenAuthentication)
+    queryset = AttendEvent.objects.all()
