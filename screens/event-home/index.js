@@ -280,7 +280,7 @@ const Event = ({
       <Pressable style={eventStyles.btn} onPress={() => {
       navigation.navigate("eventDetails");
     }}>
-        <Text style={eventStyles.btnText}>Join</Text>
+        <Text style={eventStyles.btnText}>View</Text>
       </Pressable>
   </View>;
 };
