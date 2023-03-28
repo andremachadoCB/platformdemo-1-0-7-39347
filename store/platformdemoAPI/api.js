@@ -3,6 +3,12 @@ const platformdemoAPI = axios.create({
   baseURL: "https://platformdemo-1-0-7-39347-prod.herokuapp.com",
   headers: { Accept: "application/json", "Content-Type": "application/json" }
 })
+function api_v1_event_list(payload) {
+  return platformdemoAPI.get(`/api/v1/event/`)
+}
+function api_v1_event_create(payload) {
+  return platformdemoAPI.post(`/api/v1/event/`, payload.data)
+}
 function api_v1_login_create(payload) {
   return platformdemoAPI.post(`/api/v1/login/`, payload.data)
 }
@@ -38,6 +44,24 @@ function rest_auth_logout_retrieve(payload) {
 function rest_auth_logout_create(payload) {
   return platformdemoAPI.post(`/rest-auth/logout/`)
 }
+function api_v1_event_retrieve(payload) {
+  return platformdemoAPI.get(`/api/v1/event/${payload.id}/`)
+}
+function api_v1_event_update(payload) {
+  return platformdemoAPI.put(`/api/v1/event/${payload.id}/`, payload.data)
+}
+function api_v1_event_partial_update(payload) {
+  return platformdemoAPI.patch(`/api/v1/event/${payload.id}/`, payload.data)
+}
+function api_v1_event_destroy(payload) {
+  return platformdemoAPI.delete(`/api/v1/event/${payload.id}/`)
+}
+function api_v1_attendevent_list(payload) {
+  return platformdemoAPI.get(`/api/v1/attendevent/`)
+}
+function api_v1_attendevent_create(payload) {
+  return platformdemoAPI.post(`/api/v1/attendevent/`, payload.data)
+}
 function api_v1_recipe_retrieve(payload) {
   return platformdemoAPI.get(`/api/v1/recipe/${payload.id}/`)
 }
@@ -52,6 +76,21 @@ function api_v1_recipe_destroy(payload) {
 }
 function rest_auth_registration_create(payload) {
   return platformdemoAPI.post(`/rest-auth/registration/`, payload.data)
+}
+function api_v1_attendevent_retrieve(payload) {
+  return platformdemoAPI.get(`/api/v1/attendevent/${payload.id}/`)
+}
+function api_v1_attendevent_update(payload) {
+  return platformdemoAPI.put(`/api/v1/attendevent/${payload.id}/`, payload.data)
+}
+function api_v1_attendevent_partial_update(payload) {
+  return platformdemoAPI.patch(
+    `/api/v1/attendevent/${payload.id}/`,
+    payload.data
+  )
+}
+function api_v1_attendevent_destroy(payload) {
+  return platformdemoAPI.delete(`/api/v1/attendevent/${payload.id}/`)
 }
 function rest_auth_password_reset_create(payload) {
   return platformdemoAPI.post(`/rest-auth/password/reset/`, payload.data)
@@ -72,6 +111,8 @@ function rest_auth_registration_verify_email_create(payload) {
   )
 }
 export const apiService = {
+  api_v1_event_list,
+  api_v1_event_create,
   api_v1_login_create,
   api_v1_recipe_list,
   api_v1_recipe_create,
@@ -83,11 +124,21 @@ export const apiService = {
   rest_auth_login_create,
   rest_auth_logout_retrieve,
   rest_auth_logout_create,
+  api_v1_event_retrieve,
+  api_v1_event_update,
+  api_v1_event_partial_update,
+  api_v1_event_destroy,
+  api_v1_attendevent_list,
+  api_v1_attendevent_create,
   api_v1_recipe_retrieve,
   api_v1_recipe_update,
   api_v1_recipe_partial_update,
   api_v1_recipe_destroy,
   rest_auth_registration_create,
+  api_v1_attendevent_retrieve,
+  api_v1_attendevent_update,
+  api_v1_attendevent_partial_update,
+  api_v1_attendevent_destroy,
   rest_auth_password_reset_create,
   rest_auth_password_change_create,
   rest_auth_password_reset_confirm_create,
