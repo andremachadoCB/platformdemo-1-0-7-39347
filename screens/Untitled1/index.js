@@ -19,7 +19,7 @@ const Untitled1 = ({}) => {
         <ImageBackground style={styles.eziaingY} source={require("./5cc08480f9312f082b3bc204_brand-line.png")} resizeMode="cover"></ImageBackground>
         
           <Pressable onPress={() => {
-        navigation.navigate("searchHotelsList");
+        navigation.navigate("eventHome");
       }}><View style={styles.VngTxYqJ}>
             <Text style={styles.OLGmBJlN}>Lets Go</Text>
           </View></Pressable>
