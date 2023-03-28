@@ -8,3 +8,8 @@ class Recipe(models.Model):
     cook_time = models.BigIntegerField()
     rating = models.IntegerField()
     image = models.CharField(max_length=256,)
+class Event(models.Model):
+    'Generated Model'
+    name = models.CharField(max_length=256,)
+    city = models.CharField(max_length=256,)
+    datetime = models.DateTimeField()
