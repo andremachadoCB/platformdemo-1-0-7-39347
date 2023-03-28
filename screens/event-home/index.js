@@ -278,7 +278,9 @@ const Event = ({
         <Text style={eventStyles.location}>{event.city}</Text>
       </View>
       <Pressable style={eventStyles.btn} onPress={() => {
-      navigation.navigate("eventDetails");
+      navigation.navigate("eventDetails", {
+        event: event
+      });
     }}>
         <Text style={eventStyles.btnText}>View</Text>
       </Pressable>

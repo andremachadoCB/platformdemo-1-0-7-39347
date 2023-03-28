@@ -1,35 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Text, View, StyleSheet, ScrollView, Image, Pressable } from "react-native";
 
 const EventDetails = ({
   route
 }) => {
   const {
-    item
+    event
   } = route.params || {};
-  const [event, setEvent] = useState({});
   useEffect(() => {
-    setEvent({
-      name: "Event name 2022",
-      location: "New York, USA",
-      distance: "10 miles away",
-      date: "28 Sep",
-      time: "11:00 AM",
-      info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam feugiat tellus a mattis ornare. Fusce sit amet libero id est iaculis hendrerit in quis nibh. \n \nProin porttitor velit nec purus consequat hendrerit. Aenean vel volutpat metus. Ut ullamcorper arcu tellus, non semper nisl lobortis vitae. Nulla sit amet risus risus. Vestibulum euismod accumsan nulla."
-    });
+    console.log("item", event);
   }, []);
   return <View style={styles.container}>
       <ScrollView>
-        <Image source={require("./assets/image.png")} style={styles.image} />
+        <Image source={{
+        uri: event?.image
+      }} style={styles.image} />
         <Image style={styles.scroller} source={require("./assets/Slider.png")} />
         <View style={styles.body}>
           <View style={styles.header}>
             <View style={styles.details}>
-              <Text style={styles.name}>{event.name}</Text>
+              <Text style={styles.name}>{event?.name}</Text>
               <View style={styles.location}>
                 <Image source={require("./assets/locationIcon.png")} style={styles.locationIcon} />
                 <Text style={styles.locationText}>
-                  {event.location} - {event.distance}
+                  {event?.city}
                 </Text>
               </View>
             </View>
@@ -41,22 +35,13 @@ const EventDetails = ({
                 <Image style={styles.icon} source={require("./assets/calendarIcon.png")} />
               </View>
               <View>
-                <Text style={styles.mainText}>{event.date}</Text>
+                <Text style={styles.mainText}>{event?.datetime}</Text>
                 <Text style={styles.subText}>Date</Text>
-              </View>
-            </View>
-            <View style={styles.dateTimeItem}>
-              <View style={styles.iconContainer}>
-                <Image style={styles.icon} source={require("./assets/clockIcon.png")} />
-              </View>
-              <View>
-                <Text style={styles.mainText}>{event.time}</Text>
-                <Text style={styles.subText}>Time</Text>
               </View>
             </View>
           </View>
           <Text style={styles.heading}>Event info</Text>
-          <Text style={styles.description}>{event.info}</Text>
+          <Text style={styles.description}>{event?.info}</Text>
         </View>
         <View style={styles.button}>
           <Button buttonText={"Book Event"} />
