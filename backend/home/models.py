@@ -13,3 +13,4 @@ class Event(models.Model):
     name = models.CharField(max_length=256,)
     city = models.CharField(max_length=256,)
     datetime = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True,null=True,blank=True,)
