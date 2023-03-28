@@ -1,8 +1,11 @@
+import { api_v1_event_list } from "./../../store/platformdemoAPI/events.slice.js";
+import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Image, FlatList, Pressable, TextInput } from "react-native";
 
 const EventHome = () => {
+  const dispatch = useDispatch();
   const [upcomingEvents, setUpcomingEvents] = useState([]);
   const [events, setEvents] = useState([]);
   const [search, setSearch] = useState("");
@@ -60,6 +63,7 @@ const EventHome = () => {
     setUser({
       name: "User Name"
     });
+    dispatch(api_v1_event_list());
   }, []);
   return <View style={styles.container}>
       <FlatList style={styles.list} ListHeaderComponent={() => <View>
