@@ -1,3 +1,4 @@
+import { getweather_get_data_25_weather_read } from "./../../store/getWeather/getweather_response_get_GetWeatherbyCities.slice.js";
 import { api_v1_event_list } from "./../../store/platformdemoAPI/events.slice.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
@@ -23,6 +24,7 @@ const EventHome = () => {
       name: "User Name"
     });
     dispatch(api_v1_event_list());
+    dispatch(getweather_get_data_25_weather_read());
   }, []);
   const {
     entities: Events
