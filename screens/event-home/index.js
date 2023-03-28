@@ -1,5 +1,5 @@
 import { api_v1_event_list } from "./../../store/platformdemoAPI/events.slice.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Image, FlatList, Pressable, TextInput } from "react-native";
@@ -23,7 +23,6 @@ const EventHome = () => {
       name: "User Name"
     });
     dispatch(api_v1_event_list());
-    console.log('Events', Events);
   }, []);
   const {
     entities: Events
@@ -33,7 +32,7 @@ const EventHome = () => {
             <Text style={styles.greetingText}>Good Morning,</Text>
             <Text style={styles.username}>{user.name}</Text>
             <Input text="Search" value={search} onChange={text => setSearch(text)} containerStyle={styles.inputContainer} />    
-            </View>} renderItem={({
+            </View>} data={Events} renderItem={({
       item
     }) => <Event event={item} />} keyExtractor={item => item.id} showsVerticalScrollIndicator={false} />
       <Footer images={[require("./assets/homeIconActive.png"), require("./assets/starIcon.png"), require("./assets/taskIcon.png"), require("./assets/mapIcon.png")]} titles={["Home", "Sponsors", "Tasks", "Map"]} active={0} activeColor="#7C7C7C" />
@@ -268,20 +267,22 @@ const Event = ({
 }) => {
   const navigation = useNavigation();
   return <View style={eventStyles.container}>
-      <Image source={event.image} style={eventStyles.image} />
+      <Image source={{
+      uri: event.image
+    }} style={eventStyles.image} />
       <View style={eventStyles.content}>
-        <Text style={eventStyles.title}>{event.title}</Text>
+        <Text style={eventStyles.title}>{event.name}</Text>
         <Text style={eventStyles.dateTime}>
-          {event.date}, {event.time}
+          {event.datetime}
         </Text>
-        <Text style={eventStyles.location}>{event.location}</Text>
+        <Text style={eventStyles.location}>{event.city}</Text>
       </View>
       <Pressable style={eventStyles.btn} onPress={() => {
       navigation.navigate("eventDetails");
     }}>
         <Text style={eventStyles.btnText}>Join</Text>
       </Pressable>
-    <Text style={styles.iZqXqCtl}>Lorem ipsum…</Text></View>;
+  </View>;
 };
 
 const eventStyles = StyleSheet.create({
